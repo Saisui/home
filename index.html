@@ -23,26 +23,30 @@
         li { margin: 0 5px; padding: 0 10px; vertical-align: middle; }
         article{ background-position: center; }
     }
-    .hidden { display: none }
+    /* .hidden { display: none } */
+    .hide { 
+        animation: q-hide 2s forwards;
+    }
     #main:not(.hidden) {
-        animation: q-show 0.5s forwards;
+        animation: q-show 1s forwards;
     }
     @keyframes q-show {
         0% { opacity: 0 }
+        50% { opacity: 0 }
         100% { opacity: 1 }
+    }
+    @keyframes q-hide {
+        0% { opacity: 1 }
+        100% { opacity: 0; display: none }
     }
 </style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <title>Nakr's HOME</title>
-<center onclick="hidden=true; main.classList.remove('hidden')">
-    <div style="z-index: 10; font-size: 20vw; position: absolute; align-items: center; top: 30vh; right: 30vw; letter-spacing: 10vw;" onpointerenter="hidden=true; main.classList.remove('hidden')">
-        花角
-    </div>
-</center>
+<div class="hide" style="z-index: 10; font-size: 20vw; position: absolute; align-items: center; top: 30vh; right: 30vw; letter-spacing: 10vw;" onpointerenter="hidden=true; main.classList.remove('hidden')">花角</div>
 <div class="bg" style="z-index: -100; width: min(100vw, 700px); height: 100vh; position: absolute; top: -10px; left: -10px; background: url(assets/huajiao_madokami.jpg) center no-repeat; filter: blur(10px); background-size: auto;"></div>
-<div id="main" class="hidden">
+<div id="main" class="show">
     <header>
         <h1>🌸HELLO, I'm nakr! have fun!</h1>
     </header>
