@@ -1,27 +1,63 @@
 <style>
-    * { font-family: "Times New Roman", meiryo; }
-    li { list-style-type: none; }
+    * { font-family: "Times New Roman", "Noto Sans CJK JP", "Noto Sans Japanese", Meiryo; }
+    article {
+        z-index: -1; margin-left: 10px; padding-top: 2px; padding-left: 10px; width: max(400px, 80vw); height: 80vh;
+        background: url(assets/huajiao_madokami.jpg) no-repeat; background-size: auto 100%; background-position: center;
+    }
+    li { list-style-type: none; background-color: #000000aa; padding: 0 10px; margin-bottom: 2px}
+    main { display: if(media(orientation: landscape): flex; else: block) }
+    h1 { margin-bottom: 10px }
+    .li-name { background-color: #00000000;  }
+    #bar {
+        margin-top: 0px;
+        padding-left: 10px; backdrop-filter: blur(5px);
+        display: flex; flex-direction: if(media(orientation: landscape): column; else: rows);
+    }
+    @media screen and (orientation: landscape) {
+        .li-name { margin: 20px 0 5px 0;}
+        #bar { width: 100px; }
+        article{ background-position: left; }
+    }
+    @media screen and (orientation: portrait) {
+        #bar { width: auto }
+        li { margin: 0 5px; padding: 0 10px; vertical-align: middle; }
+        article{ background-position: center; }
+    }
+    .hidden { display: none }
+    #main:not(.hidden) {
+        animation: q-show 0.5s forwards;
+    }
+    @keyframes q-show {
+        0% { opacity: 0 }
+        100% { opacity: 1 }
+    }
 </style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <title>Nakr's HOME</title>
+<center onclick="hidden=true; main.classList.remove('hidden')">
+    <div style="z-index: 10; font-size: 20vw; position: absolute; align-items: center; top: 30vh; right: 30vw; letter-spacing: 10vw;" onpointerenter="hidden=true; main.classList.remove('hidden')">
+        花角
+    </div>
+</center>
 <div class="bg" style="z-index: -100; width: min(100vw, 700px); height: 100vh; position: absolute; top: -10px; left: -10px; background: url(assets/huajiao_madokami.jpg) center no-repeat; filter: blur(10px); background-size: auto;"></div>
-<header>
-    <h1>🌸HELLO, I'm nakr! have fun!</h1>
-</header>
-<main style="display: flex">
-    <ul style="width: 140px; padding-left: 10px; backdrop-filter: blur(2px);">
-        <p>my SMS</p>
-        <li><a href="https://space.bilibili.com/280282">bilibili @花角</a></li>
-        <li><a href="https://live.bilibili.com/4359432">bilibili LIVE</a></li>
-        <p>TOOLs</p>
-        <li><a href="/codepan.html">CODEPAN</a></li>
-    </ul>
-    <article style="z-index: -1; margin-left: 10px; padding-left: 10px; width: 500px; height: 80vh;
-      background: url(assets/huajiao_madokami.jpg) no-repeat; background-size: auto 100%; background-position: center;">
-        <h2>ABOUT ME</h2>
-        <p>I'm 花角(huajiao), a people</p>
-        <p>kigurumi / code / draw</p>
-    </article>
-</main>
+<div id="main" class="hidden">
+    <header>
+        <h1>🌸HELLO, I'm nakr! have fun!</h1>
+    </header>
+    <main>
+        <ul id="bar">
+            <li class="li-name">my SMS</li>
+            <li><a href="https://space.bilibili.com/280282">Bilibili</a></li>
+            <li><a href="https://live.bilibili.com/4359432">Live</a></li>
+            <li class="li-name">TOOLs</li>
+            <li><a href="/codepan.html">CODEPAN</a></li>
+        </ul>
+        <article>
+            <h2 style="margin-top: 10px">ABOUT ME</h2>
+            <p>I'm 花角(huajiao), a people</p>
+            <p>kigurumi / code / draw</p>
+        </article>
+    </main>
+</div>
