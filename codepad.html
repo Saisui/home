@@ -1,0 +1,36 @@
+<meta content="width=device.width" name="viewport">
+<main style="margin:0;min-height:100vh;display:flex;align-items:center; flex-direction:column;">
+<div>
+<div><a href="/">HOME</a><h1> RUN CODE </h1></div>
+<textarea style="
+height:max(400px,70vh);width:800px;max-width:90vw;padding:0.5rem;font-family:'fira code';white-space:pre-wrap;background:lightgray;outline:none;border:none;resize:none;overflow:auto;"></textarea>
+</div>
+</main>
+<style>
+</style>
+<iframe frameborder="0" style="width: 100vw; height: 100vh"></iframe>
+<script>
+window.addEventListener('load',()=>{
+const UH={handles:{},ps(){const hs={}
+const kvs=location?.hash?.split('?')?.[1]?.split('&')?.filter(e=>e)?.map(h=>h.split('='))
+if(kvs)for(const kv of kvs) hs[kv[0]]=kv[1];return hs;},set(k,value){this.handles[k]??=[]
+const hs=this.ps()
+ov=hs[k]
+hs[k]=value
+this.handles[k].forEach(f=>f(value,ov))
+const str=Object.entries(hs).map(kv=>kv[0]+'='+kv[1]).join("&")
+location.hash=location.hash.split('?')[0]+'?'+str},get(k){return this.ps()[k]},parse(url){const hash=url.split('#')[1]
+if(!hash)return{};const[path,sPs]=hash.split('?');const hs={}
+const kvList=sPs?.split('&')?.filter(e=>e)?.map(h=>h.split('='))??[]
+if(kvList)for(const kv of kvList) hs[kv[0]]=kv[1];return{path,params:hs}},}
+window.addEventListener('hashchange',function(ev){const{path:_,params:ops}=UH.parse(ev.oldURL);const ps=UH.ps()
+for(const k in ops){if(UH.get(k)!== ops[k])
+UH.handles[k].forEach(f=>f(ps[k],ops[k]))}},false);
+const doc=document;const los=localStorage;
+const $=new Proxy(q=>doc.querySelector(q),{get:(f,n)=>f(n),apply:(f,n)=>f(n)});const cod=$.iframe;const tx=$.textarea;tx.value=los.codepad_editing??'';tx.addEventListener('input',ev=>los.codepad_editing=ev.target.value)
+const tr=(s,m,n,r=s,ns=[...n])=>[...m].map((c,i)=>r=r.replaceAll(c,ns[i]??''))&&r;const enco=(str)=>tr(btoa(unescape(encodeURIComponent(str))),'+/=','-_')
+const deco=(s)=>decodeURIComponent(escape(atob(tr(s,'-_','+/')+'='.repeat((4-s.length%4)%4))));$.h1.onclick=function(){if(!tx.value)return;UH.set('code',enco(tx.value))
+cod.srcdoc=tx.value;cod.hidden=false;$.main.remove()}
+if(UH.get('code')){cod.srcdoc=deco(UH.get('code'));cod.addEventListener('load',()=>{doc.title=cod.contentDocument.title;cod.hidden=false;})
+$.main.remove()}})
+</script>
